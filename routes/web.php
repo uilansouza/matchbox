@@ -15,19 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
 Route::group(['prefix'=>'api'],function()
 {
     Route::group(['prefix'=>'vagas'],function()
     {
         Route::get('',['uses'=>'VagasController@TodasVagas']);
 
-        Route::get('{id}',['uses'=>'VagasController@consultaVaga']);
+        Route::get('{id}',['uses'=>'VagasController@gconsultaVaga']);
         
         Route::post('',['uses'=>'VagasControllerr@incluiVaga']);
 
         Route::put('{id}',['uses'=>'VagasController@atualizaVaga']);
 
-        Route::delete('{id}',['uses'=>'VagasController@deletaVaga']);
+        Route::delete('{id}',['uses'=>'VagasController@deletavaga']);
 
     });
 
@@ -41,17 +42,15 @@ Route::group(['prefix'=>'api'],function()
 
         Route::put('{id}',['uses'=>'CandidatoController@atualizaCandidato']);
 
-        Route::delete('{id}',['uses'=>'CandidatoController@deletaCandidato']);
+        Route::delete('{id}',['uses'=>'CandidatoController@deleteCandidato']);
 
     });
-
-   
 
 
 
 });
 
-
+*/
 
 /**
  * adicionar vagas
