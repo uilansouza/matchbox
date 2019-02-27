@@ -21,7 +21,7 @@ class Candidatura extends Model
            $candidaturas = DB::table('candidatos as cd')
           ->join('candidatura as ca', 'cd.id', '=', 'ca.id_candidatos')
           ->join('vagas as va', 'ca.id_vagas', '=', 'va.id')
-          ->select('cd.id as Codigo vaga','cd.nome', 'cd.email', 'va.nome_vaga as Vaga')
+          ->select('ca.id as Codigo candidatura','cd.nome', 'cd.email', 'va.nome_vaga as Vaga')
           ->get();
 
          
@@ -42,8 +42,8 @@ class Candidatura extends Model
           
           $candidaturas = DB::table('candidatos as cd')
           ->join('candidatura as ca', 'cd.id', '=', 'ca.id_candidatos')
-          ->join('vagas as va', 'cd.id', '=', 'va.id')
-          ->select('cd.id as Codigo vaga','cd.nome', 'cd.email', 'va.nome_vaga as Vaga')
+          ->join('vagas as va', 'ca.id_vagas', '=', 'va.id')
+          ->select('ca.id as Codigo candidatura','cd.nome', 'cd.email', 'va.nome_vaga as Vaga')
           ->where('cd.nome', 'like', "%$nome%")
           ->get();
 
