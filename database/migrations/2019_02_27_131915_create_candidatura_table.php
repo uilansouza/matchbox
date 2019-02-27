@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriateTableCandidatoHasVagas extends Migration
+class CreateCandidaturaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CriateTableCandidatoHasVagas extends Migration
      */
     public function up()
     {
-        Schema::create('candidato_has_vagas', function (Blueprint $table) {
+        Schema::create('candidatura', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('id_candidatos')->references('id')->on('candidatos');
             $table->integer('id_vagas')->references('id')->on('vagas');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ class CriateTableCandidatoHasVagas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidato_has_vagas');
+        Schema::dropIfExists('candidatura');
     }
 }

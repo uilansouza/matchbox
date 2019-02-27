@@ -17,7 +17,7 @@ class CriateTableVagas extends Migration
             $table->increments('id');
             $table->string('nome_vaga',100);
             $table->string('descricao',240);
-          //  $table->timeTz('data_limite');
+            $table->timestamp('data_limite');
             $table->integer('numero_vagas');
             $table->timestamps();
 

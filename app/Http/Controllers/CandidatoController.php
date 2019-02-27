@@ -23,17 +23,9 @@ class CandidatoController extends Controller
    }
 
 
-   public function consultaCandidato($id)
+   public function consultaCandidato($nome)
    {
-    $candidato = Candidato::find($id);
-
-        if(!$candidato) {
-            return response()->json([
-                'message'   => 'Record not found',
-            ], 404);
-        }
-
-        return response()->json($candidato);
+     Candidato::consultaCandidato($nome);
    }
 
    public function incluiCandidato( Request $request)
@@ -41,6 +33,7 @@ class CandidatoController extends Controller
     
         $candidato = new Candidato();
         $candidato->fill($request->all());
+        $candidato['senha'] = \Hash::make($candidato['senha']);
         $candidato->save();
         return response()->json($candidato, 201);
    }
@@ -49,6 +42,7 @@ class CandidatoController extends Controller
    {
     
         $candidato = Candidato::find($id);
+       
 
         if(!$candidato) {
             return response()->json([
@@ -57,6 +51,7 @@ class CandidatoController extends Controller
         }
 
         $candidato->fill($request->all());
+        $candidato['senha'] = \Hash::make($candidato['senha']);
         $candidato->save();
 
         return response()->json($candidato);
