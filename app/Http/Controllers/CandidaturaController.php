@@ -23,9 +23,10 @@ class CandidaturaController extends Controller
     
     public function todasCandidaturas()
     {
-       Candidatura::todascandidaturas($id ='');
+       Candidatura::todascandidaturas();
 
     }
+
     public function consultaCandidaturas($nome)
     {
        Candidatura::consultaCandidaturas($nome);
@@ -33,10 +34,8 @@ class CandidaturaController extends Controller
 
     public function atualizaCandidatura(Request $request, $id)
     {
-       
         $candidatura = Candidatura::find($id);
               
-
         if(!$candidatura) {
             return response()->json([
                 'message'   => 'Record not found',
@@ -45,8 +44,6 @@ class CandidaturaController extends Controller
 
         $verificarDuplicidade = Candidatura::consultarDuplicidadeCandidatura($request->id_candidatos,$request->id_vagas);
 
-        //dd($request->id_candidatos,$request->id_vagas);
-      
         if($verificarDuplicidade){
             
           return response()->json([
@@ -64,7 +61,6 @@ class CandidaturaController extends Controller
     public function incluirCandidatura(Request $request)
     {
         $candidatura = new Candidatura();
-        
         
         $verificarDuplicidade =Candidatura::consultarDuplicidadeCandidatura($request->id_candidatos,$request->id_vagas);
       
@@ -101,4 +97,3 @@ class CandidaturaController extends Controller
     
     }
 }
-

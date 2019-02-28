@@ -25,24 +25,12 @@ class Candidato extends Model
 
    public static function consultaduplicidade($email)
    {
-      //$email = 'porta@uol.com.br';
-      
-      $candidato = DB::table('candidatos as cd')
+       $candidato = DB::table('candidatos as cd')
       ->select('cd.nome', 'cd.email','cd.cpf','cd.instituicao','cd.graduacao','cd.ano_conclusao')
       ->where('cd.email', 'like', "%$email%")
       ->get();
          
-
-      $json = json_decode($candidato);
-      
-       if($json)
-       return true;
-       return false;
-      //return $candidato;
-      
-   
+      return $candidato;
      
-      
    }
-
 }

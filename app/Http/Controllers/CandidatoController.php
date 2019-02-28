@@ -18,14 +18,16 @@ class CandidatoController extends Controller
     
    public function todosCandidatos()
    {
-    $candidatos = Candidato::all();
-    return response()->json($candidatos);
+        $candidatos = Candidato::all();
+        return response()->json($candidatos);
    }
 
-
+   /**
+    * A Consulta é feito pelo nome do candidato
+    */
    public function consultaCandidato($nome)
    {
-     Candidato::consultaCandidato($nome);
+         Candidato::consultaCandidato($nome);
    }
 
    public function incluiCandidato( Request $request)
@@ -34,14 +36,12 @@ class CandidatoController extends Controller
         $candidato = new Candidato();
         $candidato->fill($request->all());
 
-        $candidatoExiste = Candidato::consultaduplicidade($candidato['email']);
-        //dd($candidatoExiste);
+         /**
+         *   VALIDAÇÃO DOS CAMPOS em branco obrigatórios
+         */
 
         $campos = Array("nome", "email", "senha");
 
-        /**
-         *   VALIDAÇÃO DOS CAMPOS
-         */
         foreach ($campos as $campo){
             if (empty($candidato[$campo])){
                 
@@ -54,7 +54,9 @@ class CandidatoController extends Controller
        
          /**
           * Validação Duplicidade de candidado pelo email
+          * Verifica se o email já não existe na base
           */
+          $candidatoExiste = Candidato::consultaduplicidade($candidato['email']);
        if ($candidatoExiste){
         return response()->json([
             'message'   => 'candidate already exists',
@@ -78,10 +80,21 @@ class CandidatoController extends Controller
                 'message'   => 'Record not found',
             ], 404);
         }
+
+        $campos = Array("nome", "email", "senha");
+
+        foreach ($campos as $campo){
+             if (empty($request[$campo])){
+                 
+                 return response()->json([
+                     'message'   => "$campo is required",
+                 ], 400);
+                 
+             }
+         }
             
         /**
          * Verifica se o email da requisição é o mesmo que ja tem na base
-         * Se o email for diferente do usuário então verificar se alguem esta usando este novo email
          */
        if( !($request->email==$candidato['email'] ) ){
 
@@ -95,6 +108,9 @@ class CandidatoController extends Controller
         }
     
         $candidato->fill($request->all());
+
+       
+
         $candidato['senha'] = \Hash::make($candidato['senha']);
         $candidato->save();
         
@@ -104,18 +120,18 @@ class CandidatoController extends Controller
 
    public function deletaCandidato($id)
    {
-    $candidato = Candidato::find($id);
+        $candidato = Candidato::find($id);
 
-    if(!$candidato) {
+        if(!$candidato) {
+            return response()->json([
+                'message'   => 'Record not found',
+            ], 404);
+        }
+
+        $candidato->delete();
         return response()->json([
-            'message'   => 'Record not found',
-        ], 404);
-    }
-
-    $candidato->delete();
-    return response()->json([
-        'message'   => 'Record Deleted successfully',
-    ], 200);
+            'message'   => 'Record Deleted successfully',
+        ], 200);
    }
 
 }

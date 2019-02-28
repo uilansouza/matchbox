@@ -1,15 +1,11 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Projeto: API de Gerenciamento de Vagas e Candidatos;
+ * Autho: Uilan Souza;
+ * Email: uilan.souza@hotmail.com;
+ * Date: 28-02-2019;
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,14 +70,3 @@ Route::group(['prefix'=>'api'],function()
 
 
 });
-
-
-
-/**
- * adicionar vagas
- * atualizar vaga
- * excluir vaga
- * visualizar vaga
- * 
- * 
- */

@@ -18,10 +18,8 @@ class VagasController extends Controller
     {
         $vagas = Vaga::all();
         return response()->json($vagas);
-
-        
-
     }
+
     public function consultaVaga ($id)
     {
 
@@ -33,8 +31,7 @@ class VagasController extends Controller
             ], 404);
         }
 
-        return response()->json($vagas);
-   
+        return response()->json($vagas);   
     }
 
     public function incluiVaga (Request $request)
@@ -43,8 +40,6 @@ class VagasController extends Controller
         $vagas->fill($request->all());
         $vagas->save();
         return response()->json($vagas, 201);
-      
-
     }
 
     public function atualizaVaga (Request $request, $id)
@@ -61,7 +56,6 @@ class VagasController extends Controller
         $vagas->save();
 
         return response()->json($vagas);
-
     }
 
     public function deletaVaga ($id)
@@ -80,10 +74,4 @@ class VagasController extends Controller
         ], 200);
        }
 
-    }
-    
-
-
-
-    
-
+    }    
