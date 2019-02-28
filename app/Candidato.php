@@ -18,9 +18,31 @@ class Candidato extends Model
       ->select('cd.nome', 'cd.email','cd.cpf','cd.instituicao','cd.graduacao','cd.ano_conclusao')
       ->where('cd.nome', 'like', "%$nome%")
       ->get();
-
+     
       $json = json_decode($candidato);
       echo json_encode($json, JSON_PRETTY_PRINT);
+   }
+
+   public static function consultaduplicidade($email)
+   {
+      //$email = 'porta@uol.com.br';
+      
+      $candidato = DB::table('candidatos as cd')
+      ->select('cd.nome', 'cd.email','cd.cpf','cd.instituicao','cd.graduacao','cd.ano_conclusao')
+      ->where('cd.email', 'like', "%$email%")
+      ->get();
+         
+
+      $json = json_decode($candidato);
+      
+       if($json)
+       return true;
+       return false;
+      //return $candidato;
+      
+   
+     
+      
    }
 
 }

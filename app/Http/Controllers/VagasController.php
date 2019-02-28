@@ -43,6 +43,7 @@ class VagasController extends Controller
         $vagas->fill($request->all());
         $vagas->save();
         return response()->json($vagas, 201);
+      
 
     }
 

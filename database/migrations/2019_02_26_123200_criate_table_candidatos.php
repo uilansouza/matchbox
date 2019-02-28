@@ -17,11 +17,11 @@ class CriateTableCandidatos extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('email')->unique();
-           // $table->timeTz('data_nascimento');
-            $table->string('cpf',12);
-            $table->string('instituicao',200);
-            $table->string('graduacao',100);
-            $table->integer('ano_conclusao');
+           $table->timeTz('data_nascimento')->nullable();
+            $table->string('cpf',12)->nullable();;
+            $table->string('instituicao',200)->nullable();;
+            $table->string('graduacao',100)->nullable();;
+            $table->integer('ano_conclusao')->nullable();;
             $table->string('senha');
             $table->timestamps();
         });
