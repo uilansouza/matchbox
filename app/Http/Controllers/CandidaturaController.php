@@ -23,7 +23,7 @@ class CandidaturaController extends Controller
     
     public function todasCandidaturas()
     {
-       Candidatura::todascandidaturas();
+       Candidatura::todascandidaturas($id ='');
 
     }
     public function consultaCandidaturas($nome)
@@ -43,6 +43,17 @@ class CandidaturaController extends Controller
             ], 404);
         }
 
+        $verificarDuplicidade = Candidatura::consultarDuplicidadeCandidatura($request->id_candidatos,$request->id_vagas);
+
+        //dd($request->id_candidatos,$request->id_vagas);
+      
+        if($verificarDuplicidade){
+            
+          return response()->json([
+             'message'   => 'Candidate already applied for this vacancy',
+                   ], 400);
+        }
+
         $candidatura->fill($request->all());
         $candidatura->save();
 
@@ -53,6 +64,17 @@ class CandidaturaController extends Controller
     public function incluirCandidatura(Request $request)
     {
         $candidatura = new Candidatura();
+        
+        
+        $verificarDuplicidade =Candidatura::consultarDuplicidadeCandidatura($request->id_candidatos,$request->id_vagas);
+      
+        if($verificarDuplicidade){
+            
+          return response()->json([
+             'message'   => 'Candidate already applied for this vacancy',
+                   ], 400);
+        }
+        
         $candidatura->fill($request->all());
         $candidatura->save();
         return response()->json($candidatura, 201);
