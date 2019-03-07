@@ -7,25 +7,23 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Projeto vagas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Criação de UMa APi para criação vagas e candidato, onde o candidato pode se cadastrar nas vagas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Collection Candidatos:  https://www.getpostman.com/collections/4baf8139df4626120726
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+Collection Vagas:  https://www.getpostman.com/collections/951c71ece01a4271be34
 
-## Learning Laravel
+Collection Candidatura: https://www.getpostman.com/collections/6ad02c5e2925d833d3ab
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+O Método get é usado tanto para exibir todos os registros, como também para exibir apenas um registro em especifico com a adição do parâmetro "nome" para a rota de buscar candidato e para a rota busca de candidatura.
+os Id´s são usados para as outras Rotas.
+
+Estou à disposição para eventuais duvidas
+
+
 
 ## Laravel Sponsors
 
